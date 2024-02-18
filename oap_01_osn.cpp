@@ -6,57 +6,61 @@
 
 using namespace std;
 
-
 void compr(string& str)
 {
-	int i = 0;
-	while (i < str.length())
-	{
-		if (str[i] == ' ')
-		{
-			str = str.erase(i, 1);
-		}
-		else
-		{
-			i++;
-		}
-	}
+ int i = 0;
+ while (i < str.length())
+ {
+  if (str[i] == ' ')
+  {
+   str = str.erase(i, 1);
+  }
+  else
+  {
+   i++;
+  }
+ }
 }
 
-
-
-void res(string* str, ...)
+void f(string* str, ...)
 {
+ string** cp = &str;
+ while (*cp != NULL)
+ {
+  compr(**cp);
 
-	string** p = &str;
-
-
-	int i = 0;
-	while (*p != NULL)
-	{
-		compr((**p));
-		cout << **(p) << endl;
-		i++;
-		p++;
-	}
-	string s1 = "df gd fg ";
+  cout << **cp << endl;
+  cp++;
+  
+ }
 }
+
 
 int main(int argc, char* argv[])
 {
 
-	string s1 = "df gd fg ";
-	string s2 = "df gd dfgdfg gdfg5434fg ";
-	string s3 = "df g ds gdf gg d d fg ";
-	
-	res(&s1, &s2, &s3);
+
+ string s1 = "df gd fg ";
+ string s2 = "df gd dfgdfg gdfg5434fg ";
+ string s3 = "df g ds gdf gg d d fg ";
+ 
 
 
-	string s4 = "dfgd fg ";
-	string s5 = "df gd    dfgdfg gdfg5434fg ";
-	string s6 = "df g n    ds gdf gg d d fg ";
-	res(&s4, &s5, &s6);
+ f(&s1, &s2,&s3, NULL);
+
+ string s4 = "df gd fg ";
+ string s5 = "df gd dfgdfg gdfg5434fg ";
+ f(&s4, &s5, NULL);
+
+ string s6 = "df gd fg";
+ string s7 = "df gd dfgdfg gdfg5434fg";
+ string s8 = "df g ds gdf gg d d fg";
+ string s9 = "df gd fg ";
+ string s10 = "df gd dfgdfg gdfg5434fg";
+ f(&s6, &s7, &s8, &s9, &s10, NULL);
 
 
-	return 0;
+
+
+ return 0;
 }
